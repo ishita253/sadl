@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <form id = "f" onsubmit = "return validate()">
+    Email:<input type = "text" id="email" name="email">
+    <div id="emailerror"></div><br>
+    Phone: <input type = "text" id="number" name="number">
+    <div id="phoneerror"></div><br>
+
+    Password:<input type = "password" id="password" name="password">
+    <div id="passworderror"></div><br>
+
+    <button>Submit</button>
+ </form>
+
+    <script>
+        function validate(){
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("number").value;
+            let password = document.getElementById("password").value;
+
+            // clear previous errors
+            document.getElementById("emailerror").innerHTML = "";
+            document.getElementById("phoneerror").innerHTML = "";
+            document.getElementById("passworderror").innerHTML = "";
+
+           let isvalid = true;
+
+            //email validation
+            const emailpattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+            if(email===""){
+                 document.getElementById("emailerror").innerHTML="email is required";
+                 isvalid = false;
+            }
+
+            else if(!emailpattern.test(email)){
+                document.getElementById("emailerror").innerHTML="Invalid Email";
+                isvalid = false;
+            }
+           
+            //password validation
+            const passwordpattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
+
+            if(password===""){
+                 document.getElementById("passworderror").innerHTML="password is required";
+                 isvalid = false;
+            }
+
+            else if(!passwordpattern.test(password)){
+                document.getElementById("passworderror").innerHTML="Min 6 chars required with atleast one upercase one lower case and a special char";
+                isvalid = false;
+            }
+            
+
+            //number validation
+            if(phone==''){
+                 document.getElementById("phoneerror").innerHTML="phone no is required";
+                 isvalid = false;
+            }
+
+            else if(phone.length!=10){
+                document.getElementById("phoneerror").innerHTML="Inavlid Number";
+                isvalid = false;
+            }
+           
+            if(isvalid){
+                alert("form submitted sucessfully!");
+                 
+            }
+           
+        }
+    </script>
+   
+</body>
+</html>

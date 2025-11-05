@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password checker</title>
+</head>
+<body>
+    <h1>Password Checker</h1>
+    <h2>Enter password:</h2>
+    <input type="password" id="pass" placeholder="password" onkeyup="check()">
+    <p id="msg"></p>
+    
+    <script>
+        function check(){
+            let p = document.getElementById("pass").value;
+            let msg="";
+            if(p.length<6){
+                msg = "Weak: Minimum 6 characters needed";
+            }
+            else if(!/[A-z]/.test(p)){
+                msg = "Weak: Add atleast one character";
+            }
+            else if(!/[0-9]/.test(p)){
+                msg = "Weak: Add atleast one number";
+            }
+            else if(!/[!@#$%^&*_]/.test(p)){
+                msg = "Weak: Add atleast one special character";
+            }
+            else{
+                msg = "Strong Password"
+            }
+
+            document.getElementById("msg").innerHTML=msg;
+        }
+    </script>
+</body>
+
+</html>
